@@ -17,13 +17,16 @@
 <div id="tracker_post" >
 	<div id="tracker_hline" style="text-align: center;width: 100%; background: #1B1B1B;">MX Servers</div>
 	<?php
-				$curissue	=	mysqli_query($mysql, "SELECT *	FROM ".$config_mysql_table_server."  ORDER BY id DESC");
+				$curissue	=	mysqli_query($mysql, "SELECT *	FROM ".$config_mysql_table_relay."  ORDER BY serverid DESC");
 	echo "<div>";		
 	while ($curissuer	=	mysqli_fetch_array($curissue) ) { 
+			$curissue3434	=	mysqli_query($mysql, "SELECT *	FROM ".$config_mysql_table_server." WHERE id = ".$curissuer["serverid"]." ORDER BY id DESC");
+			$curissuer345654	=	mysqli_fetch_array($curissue3434);
 
-			echo "<div id='tracker_listitem' style='width: 20%;color: lightgreen;overflow: hidden;'>".$curissuer["servername"]."</div>";
-			echo "<div id='tracker_listitem' style='width: 40%;color: lightgreen;overflow: hidden;'>".$curissuer["port"]."</div>";
-			echo "<div id='tracker_listitem' style='width: 20%;color: lightgreen;'>Server ID =".$curissuer["id"]."</div><br />";
+				echo "<div id='tracker_listitem' style='width: 20%;color: lightgreen;'>".$curissuer["domain"]."</div>";
+				echo "<div id='tracker_listitem' style='width: 50%;color: lightblue;'><b> - ".$curissuer["serverid"]." - ".@$curissuer345654["servername"]."</b></div>";
+				echo "<div id='tracker_listitem' style='width: 10%;color: lightgreen;'>".getUsernameFromID($mysql, $curissuer["fromuserid"], $config_mysql_table_users)."</div>";
+				echo "<div id='tracker_listitem' style='width: 10%;color: lightgreen;'>".$curissuer["sourceexec"]."</div>";
 			
 	}
 		echo "</div>";	
@@ -68,6 +71,7 @@ if ($_SESSION['tracker_csrf'] == $_POST['csrf']) {
 
 	$query = "SELECT * FROM `".$config_mysql_table_relay."` WHERE sourceexec = 'user' AND fromuserid = ".$_SESSION["tracker_userid"]." ORDER BY id DESC LIMIT 15 ";
 		
+		if($config_adns_mode != "2") {
 	?>
 <section id="usermanagersection" >
 	<div id="sectionheading" style="background: black;"><h1>Add Server</h1></div>
@@ -117,6 +121,7 @@ if ($_SESSION['tracker_csrf'] == $_POST['csrf']) {
 		}
 	echo '</table><br /><br />';
 	echo $stringwithoutputs;
+		}
 	?>
 </section>
 										

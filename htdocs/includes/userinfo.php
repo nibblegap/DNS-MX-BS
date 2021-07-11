@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 					echo "<input name='username' type='text' style='width: 80% !important;' value='".$row["user"]."'>";
 					echo "<input name='updateuser' type='submit' style='width: 20% !important;' value='Change Username'>";
 					
-					echo "<input name='password' type='text' style='width: 80% !important;' value='".$row["pass"]."'>";
+					echo "<input name='password' type='text' style='width: 80% !important;' value='xxx'>";
 					echo "<input name='updatepass' type='submit' style='width: 20% !important;' value='Change Password'>";
 					
 					echo "<input name='csrf' type='hidden' value='".$csrftoken."'>";

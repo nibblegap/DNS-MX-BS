@@ -21,28 +21,21 @@
 	<?php
 
 	$curissue	=	mysqli_query($mysql, "SELECT *
-											FROM ".$config_mysql_table_relay." 
+											FROM ".$config_mysql_table_server." 
 											");
-
-			echo "<div id='tracker_listitem' style='width: 20%;'>Status</div>";
-			echo "<div id='tracker_listitem' style='width: 50%;'>Server</div>";
-			echo "<div id='tracker_listitem' style='width: 10%;'>Assigned</div>";
-			echo "<div id='tracker_listitem' style='width: 10%;'>Created</div><br />";
-
-															
+											
 	while ($curissuer	=	mysqli_fetch_array($curissue) ) {
-				echo "<div id='tracker_listitem' style='width: 20%;color: lightgreen;'>".$curissuer["domain"]."</div>";
-				echo "<div id='tracker_listitem' style='width: 50%;color: lightblue;'><b> - ".$curissuer["serverid"]."</b></div>";
-				echo "<div id='tracker_listitem' style='width: 10%;color: lightgreen;'>".getUsernameFromID($mysql, $curissuer["fromuserid"], $config_mysql_table_users)."</div>";
-				echo "<div id='tracker_listitem' style='width: 10%;color: lightgreen;'>".$curissuer["sourceexec"]."</div>";
-				echo "<div id='tracker_listitem' style='width: 10%;color: lightgreen;'>".$curissuer["sourceexec"]."</div>";
-		echo "";					
+			echo "<div>";
+				echo "<div id='tracker_listitem' style='width: 20%;color: lightgreen;'>Host: ".$curissuer["servername"]."</div>";
+				echo "<div id='tracker_listitem' style='width: 30%;color: lightblue;'><b>Port: ".$curissuer["port"]."</b></div>";
+				echo "<div id='tracker_listitem' style='width: 50%;color: lightgreen;'>TXT: \"".$findvar_in_dns_txt."".$curissuer["id"]."\"</div>";
+		echo "</div>";					
 	}
 
 		
 
 	?>
-	</div><?php } ?>
+	</div>
 
 <br clear="left">
 
@@ -129,7 +122,7 @@ if ($_SESSION['tracker_csrf'] == $_POST['csrf']) {
 		}
 	echo '</table><br /><br />';
 	echo $stringwithoutputs;
-	?>
+	?><?php } ?>
 </section>
 								<a href="./?&colocation=listadmin&reset=deleteall">Delete All Domains</a>	
 								<?php

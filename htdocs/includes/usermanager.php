@@ -1,4 +1,5 @@
 <?php
+	if($_SESSION["tracker_rank"] == "admin") {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Something posted
@@ -41,6 +42,8 @@ if ($_SESSION['tracker_csrf'] == $_POST['csrf']) {
 	?>
 <section id="usermanagersection" >
 	<div id="sectionheading">User Manager</div>
+	admin: Can manage User, can Manage MX Servers, Can add Domains [if in single server mode]
+	user: Can add Domains [if in single server mode]
 	<?php
 
 	echo '<table id="usermanagertable">';
@@ -107,5 +110,6 @@ if ($_SESSION['tracker_csrf'] == $_POST['csrf']) {
 	<?php
 	if(@$_GET["reset"] == "yes") {
 		mysqli_query($mysql, "UPDATE ".$config_mysql_table_users." SET tries = 1");
+	}
 	}
 	?>

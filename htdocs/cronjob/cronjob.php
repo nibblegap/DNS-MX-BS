@@ -1,9 +1,9 @@
 <?php
-$path	=	PATH TO CRONJOB FOLDER;
+$path	=	"/var/www/html/bxc/cronjob/";
 require_once($path."../config.php");
 $buildstring_transport = "";
 $buildstring_relay = "";
-$query	=	"SELECT * FROM `".$config_mysql_table_relay."`"; 
+$query	=	"SELECT * FROM `".$config_mysql_table_relay."` WHERE serverid IS NOT NULL AND serverid <> ''"; 
 $result = mysqli_query($mysql, $query) or die(mysqli_error($mysql));
 while ($vars = mysqli_fetch_array($result, MYSQLI_BOTH)) {
 	$isok = false;

@@ -6,9 +6,12 @@
 		$config_mysql_table_server	=	"bxc_servers";
 		$config_mysql_table_users	=	"bxc_users";
 		
-		$config_servername	=	"Trace"; # Name of the Server
-		$config_maxtries = 20; # Max Fail Logins until Site block
-		$config_adns_id = 1; # ID of the Default Mail Server used in AUTODNS Script
+		$config_servername	=	"Trace"; # Name of the Page - Choose randomly if you want.
+		$config_maxtries = 20; # Max tries after loggin get blocked and you have to reset via database. [anti bruteforce]
+		$config_adns_mode = "2"; # // 1 = SINGLE SERVER | 2 = MULTI SERVER [ see readme how to prepare mail dns with txt. entry ]
+		$config_adns_id = 1;  # Default Server [ Only for Single Use ] 
+		
+		$findvar_in_dns_txt	=	"backup_mail_servid=";
 		
 	#####################################################################
 	##### MySQL LOGIN ###################################################

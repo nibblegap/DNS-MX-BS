@@ -1,0 +1,74 @@
+-> Change Path Variables at the top of the Cronjob Scripts if needed
+-> Change Config.php Settings
+-> Change the Postfix Configuration to use Relaydomains
+(see postfix-main.cf)
+
+Cronjob cronjob-autobind -> If you use a bind slave server this script
+will copy the domains from bind to your bxccs backup site (this script and postfix)
+Cronjob cronjob -> This script is to create the postfix configuration out of the
+database entries made by the autodns cronjob or you manually
+
+Default Login is
+Username: admin
+Passwort: adminLogMeIn
+
+CONFIGURATE POSTFIX (NEEDED URGENTLY TO RUN THIS MODULE) CRONJOB.PHP
+-----------------------------------------------------------------
+unlink PATHTOBINDFILEINCRONJOBFOLDER; 
+cp /etc/bind/named.conf.local PATHTOCRONJOBFOLDERBINDFILE;
+chown www-data PATHTOCRONJOBFOLDERBINDFILE;
+chgrp www-data PATHTOCRONJOBFOLDERBINDFILE; 
+php PATHTOCRONJOBFOLDER/cronjob-autobind.php;
+
+My Cron Looks like this:
+chown www-data /var/www/html/* -R; chgrp www-data /var/www/html/* -R;php7.4 /var/www/html/bxccs/cronjob/cronjob.php; unlink /etc/postfix/transportmaps; unlink /etc/postfix/relaydomains;mv /var/www/html/bxccs/cronjob/transportmaps /etc/postfix/transportmaps; mv /var/www/html/bxccs/cronjob/relaydomains /etc/postfix/relaydomains;/usr/sbin/postmap /etc/postfix/relaydomains; /usr/sbin/postmap /etc/postfix/transportmaps; /etc/init.d/postfix reload
+
+
+AUTODNS CRONJOB EXAMPLE 
+---------------------------------------------
+php PATHTOCRONJOB.PHP; 
+unlink /etc/postfix/transportmaps; 
+unlink /etc/postfix/relaydomains;
+mv PATHTOCRONJOBFOLDER/transportmaps /etc/postfix/transportmaps; 
+mv PATHTOCRONJOBFOLDER/relaydomains /etc/postfix/relaydomains;
+/usr/sbin/postmap /etc/postfix/relaydomains;
+/usr/sbin/postmap /etc/postfix/transportmaps;
+/etc/init.d/postfix reload
+
+unlink /var/www/html/bxccs/cronjob/bindfile.bind; cp /etc/bind/named.conf.local /var/www/html/bxccs/cronjob/bindfile.bind;chown www-data /var/www/html/bxccs/cronjob/bindfile.bind; chgrp www-data /var/www/html/bxccs/cronjob/bindfile.bind; php /var/www/html/bxccs/cronjob/cronjob-autobind.php;
+
+
+CONFIG FOR POSTFIX main.cf
+-------------------------------------
+
+smtpd_banner = $myhostname ESMTP $mail_name (Debian/GNU)
+biff = no
+
+append_dot_mydomain = no
+readme_directory = no
+compatibility_level = 2
+
+smtpd_tls_cert_file=PATHTOSSLCERT
+smtpd_tls_key_file=PATHTOSSLCERTKEY
+smtpd_use_tls=yes
+smtpd_tls_session_cache_database = btree:${data_directory}/smtpd_scache
+smtp_tls_session_cache_database = btree:${data_directory}/smtp_scache
+
+
+smtpd_relay_restrictions = permit_mynetworks permit_sasl_authenticated reject_unauth_destination
+myhostname = SERVERHOSTNAME
+alias_maps = hash:/etc/aliases
+alias_database = hash:/etc/aliases
+myorigin = /etc/mailname
+mydestination = $myhostname, localhost
+relayhost =
+mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128
+mailbox_size_limit = 0
+recipient_delimiter = +
+inet_interfaces = all
+inet_protocols = all
+maximal_queue_lifetime = 30d
+
+relay_recipient_maps =
+relay_domains = hash:/etc/postfix/relaydomains
+transport_maps = hash:/etc/postfix/transportmaps
