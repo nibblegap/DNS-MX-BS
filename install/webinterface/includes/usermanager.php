@@ -83,7 +83,7 @@ if ($_SESSION['tracker_csrf'] == $_POST['csrf']) {
 					echo "<td><input name='username' style='width: 80% !important;'  type='text' value='".$row["user"]."'>";
 					echo "<input name='updateuser' type='submit' style='width: 20% !important;' value='C'></td>";
 					
-					echo "<td><input name='password' style='width: 80% !important;' type='text' value='".$row["pass"]."'>";
+					echo "<td><input name='password' style='width: 80% !important;' type='text' value='xxx'>";
 					echo "<input name='updatepass' style='width: 20% !important;' type='submit' value='C'></td>";
 					
 					echo "<td><input name='rank' style='width: 80% !important;' type='text' value='".$row["rank"]."'>";

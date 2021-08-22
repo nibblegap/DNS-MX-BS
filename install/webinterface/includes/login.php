@@ -6,7 +6,6 @@
 <?php
 	goto aosidj; exit();}
 	if(isset($_POST["username"]) AND isset($_POST["password"])) {
-		//////////////////////////////////	
 			$wiki_sql2	=	"SELECT * FROM ".$config_mysql_table_users." WHERE user = \"".mysqli_real_escape_string($mysql, htmlspecialchars($_POST["username"]))."\" 
 			";
 			$wiki_r2	=	mysqli_query($mysql, $wiki_sql2);
@@ -34,7 +33,6 @@
 		<div id="notifyouttertwo">	 
 		<div id="notifynews">
 			<div id="loginouter">
-			<h1>Backup Services</h1>
 				<div id="loginbox">
 					<form action="" method="post" >
 						<input type="text" name="username" placeholder="Username" ><br />

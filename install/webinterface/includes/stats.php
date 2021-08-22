@@ -98,7 +98,7 @@ if ($_SESSION['tracker_csrf'] == $_POST['csrf']) {
 					echo "<td><input name='add' type='submit' value='add'></td>";
 					echo "<td></td>";
 				echo '</tr>';
-				echo '</form>';			
+				echo '</form><br clear="left">';			
 				
 			$stringwithoutputs	=	"";
 		
@@ -124,4 +124,7 @@ if ($_SESSION['tracker_csrf'] == $_POST['csrf']) {
 		}
 	?>
 </section>
-										
+													<a href="./?&colocation=stats&reset=deleteall">Delete All Domains</a>	
+								<?php
+									if($_GET["reset"] == "deleteall") mysqli_query($mysql, "DELETE FROM ".$config_mysql_table_relay);
+								?>					

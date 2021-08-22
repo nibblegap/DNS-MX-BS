@@ -1,23 +1,13 @@
 <?php	
 	require_once("./includes/functions.php");
-	//////////////////////////////////
-	// LOGIN CHECK
-	//////////////////////////////////	
 	$tracker_loginvar	=	false;
-		if(@$_SESSION["tracker_loggedin"] == "true" AND isset($_SESSION["tracker_userid"])AND isset($_SESSION["tracker_username"])) {
-			$tracker_loginvar  = true;
-		}
-
-				if ($tracker_loginvar != true) {
-					require_once("./includes/login.php");					
-		} else {
+	if(@$_SESSION["tracker_loggedin"] == "true" AND isset($_SESSION["tracker_userid"])AND isset($_SESSION["tracker_username"])) {
+			$tracker_loginvar  = true; }
+	if ($tracker_loginvar != true) { require_once("./includes/login.php"); } else {
 ?>	
 	<div id="trackerdiv">
-	
 			<div id="trackerinner">
-				<?php
-					require_once("./includes/navigation.php");
-				?>				
+				<?php require_once("./includes/navigation.php"); ?>				
 			</div>	
 			<div id="trackersec">
 				<?php
@@ -55,8 +45,5 @@
 				 ?>
 			</div>
 	</div>
-	<?php
-		}
-	?>
+	<?php } ?>
 	</div>
-<br clear="left">

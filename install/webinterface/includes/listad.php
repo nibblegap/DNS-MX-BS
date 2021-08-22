@@ -124,7 +124,3 @@ if ($_SESSION['tracker_csrf'] == $_POST['csrf']) {
 	echo $stringwithoutputs;
 	?><?php } ?>
 </section>
-								<a href="./?&colocation=listadmin&reset=deleteall">Delete All Domains</a>	
-								<?php
-									if($_GET["reset"] == "deleteall") mysqli_query($mysql, "DELETE FROM ".$config_mysql_table_relay);
-								?>

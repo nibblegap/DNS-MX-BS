@@ -44,12 +44,12 @@
 
 						<?php if(isset($_GET["ticketid"])) { echo '<a href="./?&colocation=admdelete&ticketid='.htmlspecialchars($_GET["ticketid"]).'">Issue Force Delete<br /><font size="-1">Not recommended!</font></a><br /><br />'; } ?>
 						<a id="listlinktorefto" href="./?&colocation=admuser">User-Management</a><br />
-						<a id="listlinktorefto" href="./?&colocation=listadmin">MX-Servers</a><br /><br />
+						<a id="listlinktorefto" href="./?&colocation=listadmin">Mail-Servers</a><br /><br />
 
 		<?php
 			}
 		?>				
-					<a id="listlinktorefto" href="./?&colocation=stats">Show My Mail Domains</a><br />
-					<a id="listlinktoref" href="./?&colocation=userchange">Edit My Account</a>		<br />
-					<a id="listlinktoreflg" href="./?&colocation=logout">Logout</a>	<br />
+					<a id="listlinktorefto" href="./?&colocation=stats">Mail-Domains</a><br />
+					<a id="listlinktoref" href="./?&colocation=userchange">Edit My Password</a>		<br />
+					<a id="listlinktoreflg" href="./?&colocation=logout">Log Off</a>	<br />
 							</fieldset>	

@@ -74,16 +74,6 @@ zone "go-records.de" {
 		};
 	file "/var/cache/bind/go-records.de.hosts";
 	};
-zone "53.141.163.89.in-addr.arpa" {
-	type slave;
-	masters {
-		89.163.141.53;
-		};
-	allow-transfer {
-		89.163.141.53;
-		};
-	file "/var/cache/bind/89.163.141.53.rev";
-	};
 zone "bugfishtm.de" {
 	type slave;
 	masters {
@@ -116,7 +106,7 @@ zone "skip-fpv.de" {
 		};
 	file "/var/cache/bind/skip-fpv.de.hosts";
 	};
-zone "blackline-hq.com" {
+zone "rebounce-bg.de" {
 	type slave;
 	masters {
 		89.163.141.53;
@@ -126,29 +116,5 @@ zone "blackline-hq.com" {
 		89.163.141.53;
 		85.14.222.3;
 		};
-	file "/var/cache/bind/blackline-hq.com.hosts";
-	};
-zone "blackline-hq.de" {
-	type slave;
-	masters {
-		89.163.141.53;
-		85.14.222.3;
-		};
-	allow-transfer {
-		89.163.141.53;
-		85.14.222.3;
-		};
-	file "/var/cache/bind/blackline-hq.de.hosts";
-	};
-zone "blackline-records.de" {
-	type slave;
-	masters {
-		89.163.141.53;
-		85.14.222.3;
-		};
-	allow-transfer {
-		89.163.141.53;
-		85.14.222.3;
-		};
-	file "/var/cache/bind/blackline-records.de.hosts";
+	file "/var/cache/bind/rebounce-bg.de.hosts";
 	};
